@@ -48,7 +48,6 @@ let toastToggle = () => (toastOpen = !toastOpen);
 export let data = {};
 $: $progress = data.progress;
 $: path = $page.url.pathname;
-
 </script>
 
 <svelte:head>
@@ -75,7 +74,13 @@ $: path = $page.url.pathname;
 
 <!-- Navigation bar -->
 <Navbar light container color="light" expand="md">
-	<NavbarBrand href="/">&#129516; sandbox.bio</NavbarBrand>
+	<NavbarBrand href="/"
+		>&#129516; sandbox.bio hosted by <img
+			src="https://www.france-bioinformatique.fr/wp-content/uploads/logo-ifb-couleur.svg"
+			alt="IFB logo"
+			height="30"
+		/></NavbarBrand
+	>
 	<NavbarToggler on:click={() => (isNavbarOpen = !isNavbarOpen)} />
 	<Collapse isOpen={isNavbarOpen} navbar expand="md" on:update={(event) => (isNavbarOpen = event.detail.isOpen)}>
 		<Nav class="ms-auto" navbar>
@@ -101,9 +106,9 @@ $: path = $page.url.pathname;
 					{/each}
 				</DropdownMenu>
 			</Dropdown>
-			<NavItem>
+			<!-- <NavItem>
 				<NavLink href="/community" active={path.startsWith("/community")}>Community</NavLink>
-			</NavItem>
+			</NavItem> -->
 		</Nav>
 	</Collapse>
 </Navbar>
@@ -118,7 +123,6 @@ $: path = $page.url.pathname;
 	</div>
 {/if}
 
-
 <!-- Page Content -->
 <Container class="mt-4">
 	<slot />
@@ -127,14 +131,25 @@ $: path = $page.url.pathname;
 <!-- Footer (don't show on tutorials to avoid scrolling issues inside terminal) -->
 {#if !$page.url.pathname.startsWith("/tutorials/")}
 	<footer class="container pt-3 mt-5 mb-4 text-muted border-top">
-		<div class="col-3">
-			<h5>sandbox.bio</h5>
-			<Nav vertical>
-				<NavLink href="https://github.com/sandbox-bio/sandbox.bio/discussions" target="_blank" class="ps-0 py-1">Feedback</NavLink>
-				<NavLink href="/about" class="ps-0 py-1">About</NavLink>
-			</Nav>
+		<div class="row">
+			<div class="col-3">
+				<h5>sandbox.bio</h5>
+				<Nav vertical>
+					<NavLink href="https://github.com/sandbox-bio/sandbox.bio/discussions" target="_blank" class="ps-0 py-1">Feedback</NavLink>
+					<NavLink href="/about" class="ps-0 py-1">About</NavLink>
+				</Nav>
+			</div>
+			<div class="col-3">
+				<h5>sandbox.bio hosted by IFB</h5>
+				<ul class="nav flex-column">
+					<li class="nav-item mb-2">
+						<a href="https://www.france-bioinformatique.fr/e-formation/" class="nav-link p-0">About IFB GT e-formation</a>
+					</li>
+					<li class="nav-item mb-2"><a href="https://github.com/IFB-ElixirFr/sandboxbioscenarios/discussions" class="nav-link p-0">Feedbacks</a></li>
+					<li class="nav-item mb-2"><a href="https://ifb-elixirfr.github.io/sandboxbio-IFB-docs/" class="nav-link p-0">Contribute</a></li>
+				</ul>
+			</div>
 		</div>
 	</footer>
-
 	<p class="mb-5" />
 {/if}

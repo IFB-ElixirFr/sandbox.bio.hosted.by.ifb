@@ -2,7 +2,7 @@
 import { Badge, Button, Card, Col, Icon, Input, Row, Tooltip } from "sveltestrap";
 import { user } from "$stores/user";
 import { progress } from "$stores/progress";
-import MailingList from "./MailingList.svelte";
+// import MailingList from "./MailingList.svelte";
 
 const TAG_COLORS = {
 	beginner: "primary",
@@ -48,8 +48,24 @@ export let categories = [];
 					<!-- Tags -->
 					<div>
 						{#each tutorial.difficulty || [] as tag}
-							<Badge color="{TAG_COLORS[tag]} bg-opacity-75">{tag}</Badge>
+							<!-- <Badge color="{TAG_COLORS[tag]} bg-opacity-75">{tag}</Badge> -->
+							<span
+								class="badge me-1 mb-2"
+								class:bg-belt-yellow={tag === "yellow belt"}
+								class:bg-belt-orange={tag === "orange belt"}
+								class:bg-belt-green={tag === "green belt"}
+								class:bg-belt-blue={tag === "blue belt"}
+								class:bg-belt-purple={tag === "purple belt"}
+								class:bg-belt-brown={tag === "brown belt"}
+								class:bg-belt-black={tag === "black belt"}
+								class:bg-success={tag === "beginner"}
+								class:bg-danger={tag === "difficult"}
+								style={tag === "intermediate" ? "background-color: #fd7e14;" : ""}
+							>
+								{tag}
+							</span>
 						{/each}
+						<br />
 						{#each tutorial.tags || [] as tag}
 							<!-- Show tags as primary if not listing tutorials (if tutorials, too many colors) -->
 							{@const color = tutorial.url ? "primary" : "secondary"}
@@ -86,13 +102,35 @@ export let categories = [];
 		{/each}
 	</Row>
 
-	{#if category.mailinglist}
+	<!-- {#if category.mailinglist}
 		<MailingList />
-	{/if}
+	{/if} -->
 {/each}
 
 <style>
 :global(.listing-card:hover) {
 	background-color: #eee !important;
+}
+.bg-belt-yellow {
+	background-color: #fce303 !important;
+	color: black;
+}
+.bg-belt-orange {
+	background-color: #fcba03 !important;
+}
+.bg-belt-green {
+	background-color: #28a100 !important;
+}
+.bg-belt-blue {
+	background-color: #0033a1 !important;
+}
+.bg-belt-purple {
+	background-color: #7b00a1 !important;
+}
+.bg-belt-brown {
+	background-color: #946123 !important;
+}
+.bg-belt-black {
+	background-color: #000000 !important;
 }
 </style>
