@@ -30,9 +30,7 @@ export const config = {
         { name: "Getting help", component: Step7 },
         { name: "Congratulations", component: Step8 },
     ],
-    init: `
-    ls
-    `,
+    init: ``,
     files: [
         "Data/O.tauri_annotation.gff",
         "Data/O.tauri_genome.fna",

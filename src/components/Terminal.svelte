@@ -210,7 +210,11 @@ function initialize(id) {
 
 		// Run initialization commands
 		addLoadingStatus("Initializing environment...");
+
+		$cli.exec("export HOME=/shared && cd ~ ");
 		$cli.exec(init);
+		$cli.exec("export PS1='guest@\\h:\\w\\$ ' ");
+
 		// Set initial terminal size, otherwise sometimes doesn't call that function at load time
 		handleResize(true);
 		// Focus cursor on command line
@@ -222,7 +226,8 @@ function initialize(id) {
 		// Make sure root@localhost prompt shows up on screen
 		addLoadingStatus("Putting the finishing touches...");
 		timerWaitForPrompt = setInterval(() => {
-			if (!initial_screen.includes("root@localhost")) {
+			// if (!initial_screen.includes("root@localhost")) {
+			if (!initial_screen.includes("guest@localhost")) {
 				$cli.exec("");
 				// Press Ctrl + L (key code 12) to show the prompt but without extra lines above it
 				$cli.emulator.bus.send(BUS_INPUT, 12);
