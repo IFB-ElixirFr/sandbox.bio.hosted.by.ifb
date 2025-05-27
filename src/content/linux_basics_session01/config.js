@@ -30,7 +30,6 @@ export const config = {
         { name: "Getting help", component: Step7 },
         { name: "Congratulations", component: Step8 },
     ],
-    init: ``,
     files: [
         "Data/O.tauri_annotation.gff",
         "Data/O.tauri_genome.fna",
@@ -42,5 +41,7 @@ export const config = {
         "Data/SRR3105699_chr18.fastq",
         "Data_file_list.txt",
     ],
-
+    init:`
+	cd /shared/projects/tutorial/;
+    `
 };

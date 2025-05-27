@@ -15,3 +15,5 @@ static/data
 static/v86/debian-state-*.bin.zst
 static/v86/debian-9p-rootfs-flat/
 static/v86/prd/
+
+dev.log

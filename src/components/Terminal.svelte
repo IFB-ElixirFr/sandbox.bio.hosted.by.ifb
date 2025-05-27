@@ -211,9 +211,12 @@ function initialize(id) {
 		// Run initialization commands
 		addLoadingStatus("Initializing environment...");
 
-		$cli.exec("export HOME=/shared && cd ~ ");
+		$cli.exec("export HOME=/shared/home && cd ~ ");
 		$cli.exec(init);
 		$cli.exec("export PS1='guest@\\h:\\w\\$ ' ");
+		$cli.exec("su - guest");
+		$cli.exec("source ~/.bashrc");
+
 
 		// Set initial terminal size, otherwise sometimes doesn't call that function at load time
 		handleResize(true);
