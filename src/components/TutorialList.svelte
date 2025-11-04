@@ -22,6 +22,13 @@ export let categories = [];
 		{category.name}
 	</h5>
 
+	{#if category.name == "Linux basics"}
+		<p>
+		Each tutorial below is associated to competency level(s) termed unix1, unix2,… as defined in the  
+		 <a href="https://zenodo.org/records/17084250" target="_blank">Unix Competency Framework for Learning Bioinformatics</a>.
+        	</p>
+	{/if}
+
 	<Row cols={{ lg: 3, md: 2, sm: 1, xs: 1 }}>
 		{#each category.tutorials as tutorial}
 			{@const haveProgressInfo = $user?.email && tutorial.id in $progress}
@@ -51,13 +58,13 @@ export let categories = [];
 							<!-- <Badge color="{TAG_COLORS[tag]} bg-opacity-75">{tag}</Badge> -->
 							<span
 								class="badge me-1 mb-2"
-								class:bg-belt-yellow={tag === "yellow belt"}
-								class:bg-belt-orange={tag === "orange belt"}
-								class:bg-belt-green={tag === "green belt"}
-								class:bg-belt-blue={tag === "blue belt"}
-								class:bg-belt-purple={tag === "purple belt"}
-								class:bg-belt-brown={tag === "brown belt"}
-								class:bg-belt-black={tag === "black belt"}
+								class:bg-chip-yellow={tag === "Unix 1"}
+								class:bg-chip-orange={tag === "Unix 2"}
+								class:bg-chip-green={tag === "Unix 3"}
+								class:bg-chip-blue={tag === "Unix 4"}
+								class:bg-chip-purple={tag === "Unix 5"}
+								class:bg-chip-brown={tag === "Unix 6"}
+								class:bg-chip-black={tag === "Unxi 7"}
 								class:bg-success={tag === "beginner"}
 								class:bg-danger={tag === "difficult"}
 								style={tag === "intermediate" ? "background-color: #fd7e14;" : ""}
@@ -111,26 +118,26 @@ export let categories = [];
 :global(.listing-card:hover) {
 	background-color: #eee !important;
 }
-.bg-belt-yellow {
+.bg-chip-yellow {
 	background-color: #fce303 !important;
 	color: black;
 }
-.bg-belt-orange {
+.bg-chip-orange {
 	background-color: #fcba03 !important;
 }
-.bg-belt-green {
+.bg-chip-green {
 	background-color: #28a100 !important;
 }
-.bg-belt-blue {
+.bg-chip-blue {
 	background-color: #0033a1 !important;
 }
-.bg-belt-purple {
+.bg-chip-purple {
 	background-color: #7b00a1 !important;
 }
-.bg-belt-brown {
+.bg-chip-brown {
 	background-color: #946123 !important;
 }
-.bg-belt-black {
+.bg-chip-black {
 	background-color: #000000 !important;
 }
 </style>

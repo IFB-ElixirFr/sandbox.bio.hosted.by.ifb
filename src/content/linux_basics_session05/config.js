@@ -18,14 +18,14 @@ export const config = {
     description: "IFB Scenario 5",
     tags: ["unix", "shell", "terminal"],
     tools: ["seqkit", "which"],
-    difficulty: ["purple belt"],
+    difficulty: ["Unix 5"],
     steps: [
         { name: "Learning a new bioinformatics tool", component: Step0 },
         { name: "What is a bioinformatics tool?", component: Step1 },
         { name: "Example with SeqKit", component: Step2 },
         { name: "A toolbox ...", component: Step3 },
-        { name: "An usage example: sequence statistics", component: Step4 },
-        { name: "Another usage example: compute the CG%", component: Step5 },
+        { name: "An usage example: explore the contents of a fasta file with seqkit", component: Step4 },
+        { name: "Another usage example: compute the CG% by chromosome", component: Step5 },
         { name: "When errors happen", component: Step6 },
         { name: "Congratulations", component: Step7 },
     ],
@@ -51,6 +51,6 @@ export const config = {
     `,*/
     files: [
         // /shared/bank/saccharomyces_cerevisiae/SacCer3/fasta/sacCer3.fa.gz
-        "data/linux_basics_session05/Data/sacCer3.fa.gz",
+        "Data/sacCer3.fa.gz",
     ],
 };

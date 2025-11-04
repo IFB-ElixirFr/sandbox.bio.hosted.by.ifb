@@ -1,8 +1,9 @@
 <script> import Quiz from "$components/Quiz.svelte"; import Execute from "$components/Execute.svelte"; </script> 
 
-# Debugging errors
+*Errare humanum est* ... 
 
-*Errare humanum est* ... When writing command lines, mistakes are common. That's why it's essential to carefully read error messages.
+When writing command lines, mistakes are common. That's why it's essential to carefully read error messages.
+
 Below, we highlight some errors that may be encountered when running `seqkit` and explain how to identify, interpret, and fix them.
 
 ## Example 1: invalid command
@@ -53,16 +54,16 @@ Error: unknown shorthand flag: 'e' in -elp
 When using a `seqkit` subcommand, the instruction should always begin with `seqkit`, followed by the desired subcommand. Any deviation from this structure will result in an error, which may (or not) clearly point out the issue.
 
 ```bash
-seqkit -a stats /shared/data/bank/saccharomyces_cerevisiae/SacCer3/fasta/sacCer3.fa.gz
+seqkit -a stats sacCer3.fa.gz
 ```
 
 Here’s the resulting error message:
 
 ```
-Error: unknown command "/shared/data/bank/saccharomyces_cerevisiae/SacCer3/fasta/sacCer3.fa.gz" for "seqkit"
+Error: unknown command "sacCer3.fa.gz" for "seqkit"
 ```
 
-**Explanation:**  In this case, the user mistakenly placed the `-a` argument before the `stats` command. As a result, the input file name, `/shared/data/bank/saccharomyces_cerevisiae/SacCer3/fasta/sacCer3.fa.gz`, is incorrectly interpreted as a command, triggering the error.
+**Explanation:**  In this case, the user mistakenly placed the `-a` argument before the `stats` command. As a result, the input file name, `sacCer3.fa.gz`, is incorrectly interpreted as a command, triggering the error.
 
 <Quiz id="step06_01" choices={[
          { valid: true, value: "Seqkit stats -a sacCer3.fa.gz"},
@@ -74,7 +75,7 @@ Error: unknown command "/shared/data/bank/saccharomyces_cerevisiae/SacCer3/fasta
          { valid: false, value: "seqkit fx2tab -n -C A sacCer3.fa.gz"},
 ]}>
         <span slot="prompt">
-	If one is located in the '/shared/data/bank/saccharomyces_cerevisiae/SacCer3/fasta/' folder, which instruction(s) would result in an error?
+	If one is located in the '/shared/projects/tutorial/Data/' folder, which instruction(s) would result in an error?
         </span>
 </Quiz>
 
@@ -82,7 +83,9 @@ Error: unknown command "/shared/data/bank/saccharomyces_cerevisiae/SacCer3/fasta
 
 - Errors are typically displayed on the last line (just before the program terminates…).
 - Take the time to read the errors carefully and try to understand them (use internet or your preferred chatbot to help interpret them).
-- Follow the instructions provided the "Usage" section (*e.g* do not place arguments before the subcommand name).
-- The file name is a **positional argument** in seqkit commands, meaning it should be provided as the **last argument** in the command.
+- Follow the instructions provided in the "Usage" section (*e.g* do not place arguments before the subcommand name).
+- The file name is a **positional argument** in seqkit commands, meaning it should be provided as the **last argument** in the command (or _via_ a pipe).
+- Seqkit commands are encoded according to bash command conventions, with “--option_name” options and sometimes their abbreviated form, but these bash conventions are not necessarily used by bioinformatics tools.
+- Each bioinformatics tool has its own set of commands, options, or arguments, and therefore a potential set of errors for users. It is therefore essential to read the documentation for each new tool to discover them.
 
 

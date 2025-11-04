@@ -9,13 +9,16 @@ In the previous chapters, you learnt how to move around in the Unix filesystem a
 This chapter will show you how to explore the data contained in these files. 
 The commands we’ll be using are fairly simple, but are solid building blocks of more sophisticated treatment pipelines.
 
-Check that you are in the expected directory with `pwd`:
+Now, at the beginning of the chapters you are placed in your personal directory, your HOME.
+Typically, calculations are performed in a directory other than the HOME directory. 
+For this session, go to the `/shared/projects/tutorial/Data` directory and check that you are in the expected directory with `pwd`:
 
 ```bash
+cd /shared/projects/tutorial/Data
 pwd
 ```
 
-The result should be `/shared/projects/linux_basics_session03/`. This directory should contain 5 files when calling `ls`.
+The result should be `/shared/projects/tutorial/Data`. This directory should contain 5 files when calling `ls`.
 
 ## Displaying file contents
 
@@ -54,8 +57,9 @@ cat SAOUHSC.bed
 You'll notice that it contains several rows and columns. 
 This `.bed` file is a classic **tabulated file**. This means that each
 column is separated by a `\t` character. This character looks like 
-a large space, although it's different. We can display 
-any string using the `echo` command. 
+a large space, although it's different. 
+
+We can display any string using the `echo` command. 
 
 Print the two following intructions (one with spaces and one with tabulations). You will
 see that they are different.
