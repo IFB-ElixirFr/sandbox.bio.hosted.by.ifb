@@ -1,26 +1,28 @@
 export async function goToTerminal(page) {
-	// Open terminal and wait till it's ready
-	await page.goto("/tutorials/playground");
-	await page.waitForSelector(`:has-text("root@localhost")`);
+    // Open terminal and wait till it's ready
+    await page.goto("/tutorials/playground");
+    // await page.waitForSelector(`:has-text("root@localhost")`);
+    await page.waitForSelector(`:has-text("guest@localhost")`);
 }
 
 export async function goToTutorial(page, tutorial, step) {
-	// Open terminal and wait till it's ready
-	await page.goto(`/tutorials/${tutorial}/${step}`);
-	await page.waitForSelector(`:has-text("root@localhost")`);
+    // Open terminal and wait till it's ready
+    await page.goto(`/tutorials/${tutorial}/${step}`);
+    // await page.waitForSelector(`:has-text("root@localhost")`);
+    await page.waitForSelector(`:has-text("guest@localhost")`);
 }
 
 export async function expectXterm(page, command, expect, callback) {
-	// Type command one character at a time. Note that `fill` and
-	// `pressSequentially` don't work for entering input in xterm.js
-	await page.keyboard.type(command);
-	await page.keyboard.press("Enter");
+    // Type command one character at a time. Note that `fill` and
+    // `pressSequentially` don't work for entering input in xterm.js
+    await page.keyboard.type(command);
+    await page.keyboard.press("Enter");
 
-	// Validate
-	await page.waitForSelector(`:has-text("${expect}")`);
-	if (callback) {
-		await callback({
-			keyboard: page.keyboard
-		});
-	}
+    // Validate
+    await page.waitForSelector(`:has-text("${expect}")`);
+    if (callback) {
+        await callback({
+            keyboard: page.keyboard
+        });
+    }
 }
